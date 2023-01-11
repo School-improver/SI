@@ -1,0 +1,4 @@
+﻿.vs/
+bin/
+obj/
+/SI/SI.TestPackage/nuget.config
