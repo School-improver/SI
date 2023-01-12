@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>$(VersionPrefix)</Version>
     <RepositoryUrl>https://github.com/School-improver/SI</RepositoryUrl>
     <Description>Test description</Description>
   </PropertyGroup>
