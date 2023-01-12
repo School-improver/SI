@@ -9,7 +9,7 @@ on:
 
 env:
   PROJECT_PATH: 'SI/SI.TestPackage/SI.TestPackage.csproj'
-  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\output
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_SOURCE_URL: 'https://nuget.pkg.github.com/School-improver/index.json'
 
 jobs:
