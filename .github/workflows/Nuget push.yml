@@ -1,0 +1,41 @@
+name: "Nuget push"
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_version:
+        description: "Package version"
+        required: true
+
+env:
+  PROJECT_PATH: 'SI/SI.TestPackage/SI.TestPackage.csproj'
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\output
+  NUGET_SOURCE_URL: 'https://nuget.pkg.github.com/School-improver/index.json'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v3
+    
+    - name: "Setup .NET"
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+        
+    - name: "Restore dependencies"
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+      
+    - name: "Build project"
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+      
+    - name: "Pack project"
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+      
+    - name: "Package push"
+      run: dontnen nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}\*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SOURCE_URL }}
+  
+      
